@@ -1,0 +1,124 @@
+{% load staticfiles %}
+<!--== Start Footer Area ==-->
+<footer id="footer-area">
+    <!-- Footer Widget Area Start -->
+    <div class="footer-widget-area">
+        <div class="container">
+            <div class="footer-widget-content">
+                <div class="row">
+                    <!-- Single Widget-item Start -->
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="single-widget-item">
+                            <h3 class="widget-title">About Market</h3>
+                            <div class="widget-body">
+                                <ul class="footer-list">
+                                    <li><a href="#">My Account</a></li>
+                                    <li><a href="#">Order History</a></li>
+                                    <li><a href="#">Returns</a></li>
+                                    <li><a href="#">Specials</a></li>
+                                    <li><a href="#">Site Map</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Single Widget-item End -->
+
+                    <!-- Single Widget-item Start -->
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="single-widget-item">
+                            <h3 class="widget-title">Customer Service</h3>
+                            <div class="widget-body">
+                                <ul class="footer-list">
+                                    <li><a href="#">Returns</a></li>
+                                    <li><a href="#">Order History</a></li>
+                                    <li><a href="#">My Account</a></li>
+                                    <li><a href="#">Site Map</a></li>
+                                    <li><a href="#">Specials</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Single Widget-item End -->
+
+                    <!-- Single Widget-item Start -->
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="single-widget-item">
+                            <h3 class="widget-title">Information</h3>
+                            <div class="widget-body">
+                                <ul class="footer-list">
+                                    <li><a href="#">Order History</a></li>
+                                    <li><a href="#">Site Map</a></li>
+                                    <li><a href="#">Returns</a></li>
+                                    <li><a href="#">Specials</a></li>
+                                    <li><a href="#">My Account</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Single Widget-item End -->
+
+                    <!-- Single Widget-item Start -->
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="single-widget-item">
+                            <h3 class="widget-title">联系我们</h3>
+                            <div class="widget-body">
+                                <div class="contact-info">
+                                    <div class="single-contact-info">
+                                    <span class="contact-icon">
+                                        <i class="fa fa-home"></i>
+                                    </span>
+                                        <a href="mailto:your@example.com" class="contact-text">
+                                            <strong>地址:</strong> 15/C, Uttara, Dhaka
+                                        </a>
+                                    </div>
+                                    <div class="single-contact-info">
+                                    <span class="contact-icon">
+                                        <i class="fa fa-phone"></i>
+                                    </span>
+                                        <a href="mailto:your@example.com" class="contact-text">
+                                            <strong>电话:</strong> {{ sys_config.phone }}
+                                        </a>
+                                    </div>
+                                    <div class="single-contact-info">
+                                    <span class="contact-icon">
+                                        <i class="fa fa-envelope"></i>
+                                    </span>
+                                        <a href="mailto:your@example.com" class="contact-text">
+                                            <strong>邮箱:</strong> {{ sys_config.email }}
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Single Widget-item End -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer Widget Area End -->
+
+    <!-- Footer Bottom Area -->
+    <div class="footer-bttom-area">
+        <div class="container">
+            <div class="row">
+                <!-- Copyright Text Area -->
+                <div class="col-md-6 m-auto text-center text-md-left order-last order-md-first">
+                    <p>Copyright &copy; 2018.Company name All rights reserved.<a target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a></p>
+                </div>
+                <!-- Copyright Text Area -->
+
+                <!-- Payment Method Area -->
+                <div class="col-md-6 m-auto text-center text-md-right">
+                    <div class="payment-support">
+                        <img src="{% static 'home/img/payment.png' %}" alt="Payment" class="d-inline-block" />
+                    </div>
+                </div>
+                <!-- Payment Method Area -->
+            </div>
+        </div>
+    </div>
+    <!-- Footer Bottom Area -->
+</footer>
+<!--== End Footer Area ==-->
+
