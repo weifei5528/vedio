@@ -1,5 +1,5 @@
 import random, re, hashlib, json
-from django.http import HttpResponse
+from django.http import JsonResponse
 
 
 class Common(object):
@@ -34,5 +34,11 @@ class Common(object):
     @staticmethod
     def success(msg, url=None):
         data = {'status': 1, 'info': msg, 'url': url}
-        return HttpResponse(json.dumps(data, ensure_ascii=False), content_type="application/json,charset=utf-8")
-
+        return JsonResponse(data)
+    """
+    返回json 失败
+    """
+    @staticmethod
+    def error(msg):
+        data = {'status': 0, "info": msg}
+        return JsonResponse(data)

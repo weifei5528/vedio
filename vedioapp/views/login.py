@@ -1,15 +1,12 @@
 from django.shortcuts import render, redirect, reverse
-from vedioapp.dao.user import User as UserDao
-from vedioapp.decorators import check_session
-from django.core import serializers
 from django.http import HttpResponse, JsonResponse
 from django.contrib import auth
 from vedioapp.util.common import Common
-from django.contrib.auth import authenticate, login, logout
+from vedioapp.dao.user import User as UserDao
+from django.utils.translation import ugettext_lazy as _
 
 
 def login(request):
-
     if request.method == 'GET':
         context = {}
         next = request.GET.get('next', None)
@@ -43,8 +40,17 @@ def register(request):
         return render(request, 'login/login.html')
     else:
         nickname = request.POST.get('nickname', None)
-        return JsonResponse({"info": '测试'})
+        email = request.POST.get('email', None)
+        username = request.POST.get('username', None)
+        password = request.POST.get('password', None)
+        user = UserDao.add_user(username, email, password, nickname)
+        if not user:
+            return Common.error(_("register_error"))
+        else:
+            return Common.success(_("register_success"))
         # pass
+def check_username(request):
+    pass
 
 
 

@@ -1,5 +1,6 @@
 {% extends "../layout.html" %}
 {% load staticfiles %}
+{% load i18n %}
 {% block content %}
 <div class="container">
         <div class="member-area-from-wrap">
@@ -36,7 +37,7 @@
                             </div>
 
                             <div class="single-input-item">
-                                <button class="btn" >登录</button>
+                                <button class="btn" >{% trans 'login' %}</button>
                             </div>
                         </form>
                     </div>
@@ -50,27 +51,27 @@
                         <form action="register{{ sys_suffix }}" method="post" id="register" >
                             {% include 'public/csrf.html' %}
                             <div class="single-input-item">
-                                <input type="text" name="nickname" placeholder="昵称" required  />
+                                <input type="text" name="nickname"  placeholder="请输入昵称(至少2个汉字)"  datatype="z2-" nullmsg="请输入您的昵称！" errormsg="请输入昵称(至少2个汉字)"  />
                             </div>
 
                             <div class="single-input-item">
-                                <input type="email" name="email" placeholder="输入您的邮件地址" required />
+                                <input type="email" name="email" placeholder="输入您的邮件地址" datatype="e" nullmsg="请填写邮箱" errormsg="请输入正确的邮箱地址" />
                             </div>
 
                             <div class="single-input-item">
-                                <input type="text" name="username" placeholder="填写用户名" required />
+                                <input type="text" name="username" placeholder="请填写用户名(6-16个字符)" datatype="s6-16" nullmsg="请填写用户名" errormsg="请输入用户名(6~16个字符)" />
                             </div>
 
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="single-input-item">
-                                        <input type="password" name="password" title="请输入密码" placeholder="输入密码" required />
+                                        <input type="password" name="password"  placeholder="请输入输入密码(至少6位)" datatype="*6-" nullmsg="请输入您的密码！" errormsg="密码范围至少6位！"  />
                                     </div>
                                 </div>
 
                                 <div class="col-lg-6">
                                     <div class="single-input-item">
-                                        <input type="password" name="sure_pass" placeholder="重复密码" required />
+                                        <input type="password" name="sure_pass" placeholder="请再次输入密码"   datatype="*" recheck="password" errormsg="您两次输入的账号密码不一致！" />
                                     </div>
                                 </div>
                             </div>
@@ -86,7 +87,7 @@
                             </div>
 
                             <div class="single-input-item">
-                                <button class="btn"  >注册</button>
+                                <button class="btn"  >{% trans 'register' %}</button>
                             </div>
                         </form>
                     </div>
@@ -101,19 +102,30 @@
 
 {% endblock %}
 {% block script %}
-<script src="{% static 'home/js/vendor/jquery.validate.js'%}"></script>
+<script src="{% static 'home/js/vendor/Validform_v5.3.2.js'%}"></script>
     <script>
         $(function(){
-            $("#register").validate({
-                debug:true,
-                showErrors:function(errorMap, errorList){
-                    errorList.each()
+            $("#register").Validform({
+                btnSubmit:'button.btn',
+                datatype:{
+                    'z2-':/^[\u4E00-\u9FA5\uf900-\ufa2d]{2,}$/,
+                    '*6-':/^.{6,}$/,
                 },
-                submitHandler:function(form){
-                    alert("提交事件!");
-                    console.log(form)
-                    //form.submit();
-                }
+                tiptype:function(msg,o,cssctl){
+                    if(o.type != 2) {
+                        layer.tips(msg,o.obj,{
+                            tipsMore: true
+                        })
+                    }
+
+                },
+                showAllError:true,
+                postonce:true,
+                ajaxPost:true,
+                ignoreHidden:true,//忽略隐藏的标签
+                callback:function(data){
+                    layer.msg(data.info)
+                },
             })
         })
     </script>

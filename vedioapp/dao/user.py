@@ -1,30 +1,35 @@
 from vedioapp.dao.common import Common
 from vedioapp.util.common import Common as CommonUtil
 from vedioapp.models.user import User as UserModel
+from django.db.models import Q
 
 
 class User(Common):
     """
-    查询用户帐号密码是否正确
-    :username 帐号
-    :password 密码
-    :return  正确返回查询的数据object 错误返回False
+    添加用户
     """
-    def check_login(self, username, password):
-        try:
-            if CommonUtil.check_email(username):
-                user = UserModel.objects.get(email=username, status=1)
-            else:
-                user = UserModel.objects.get(username=username)
-        except UserModel.DoesNotExist:
-            print("1111")
+    @staticmethod
+    def add_user(username, email, password, nickname=None):
+        if not User.check_email_exists(username, email):
             return False
-        except UserModel.MultipleObjectsReturned:
-            print("22222")
+        user = UserModel.objects.create_user(username, email, password, nickname=nickname)
+        if user:
+            user.save()
+            return user
+        else:
             return False
 
-        if user.password != CommonUtil.md5_password(password):
-            print("3333")
+    """
+    检查用户名和邮箱是否存在
+    """
+    @staticmethod
+    def check_email_exists(username, email):
+        count = UserModel.objects.filter(Q(username=username) | Q(email=email)).count()
+        if count:
             return False
-        return user
+        else:
+            return True
+
+
+
 
