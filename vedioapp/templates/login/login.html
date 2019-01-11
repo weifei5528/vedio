@@ -112,7 +112,8 @@
                     '*6-':/^.{6,}$/,
                 },
                 tiptype:function(msg,o,cssctl){
-                    if(o.type != 2) {
+                    console.log(o.type)
+                    if(o.type == 3) {
                         layer.tips(msg,o.obj,{
                             tipsMore: true
                         })
@@ -121,10 +122,13 @@
                 },
                 showAllError:true,
                 postonce:true,
+                tipSweep:true,
                 ajaxPost:true,
                 ignoreHidden:true,//忽略隐藏的标签
                 callback:function(data){
+                    return false
                     layer.msg(data.info)
+                    return false;
                 },
             })
         })
